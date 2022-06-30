@@ -47,8 +47,8 @@ jobs:
             sdk_url_path: https://downloads.openwrt.org/snapshots/targets/imx/cortexa9
             sdk_name: -sdk-imx-
           - arch: arm_cortex-a9_vfpv3
-            sdk_url_path: https://downloads.openwrt.org/releases/21.02.2/targets/mvebu/cortexa9
-            sdk_name: -sdk-21.02.2-mvebu-cortexa9_
+            sdk_url_path: https://downloads.openwrt.org/releases/21.02.3/targets/mvebu/cortexa9
+            sdk_name: -sdk-21.02.3-mvebu-cortexa9_
           - arch: arm_cortex-a9_vfpv3-d16
             sdk_url_path: https://downloads.openwrt.org/snapshots/targets/mvebu/cortexa9
             sdk_name: -sdk-mvebu-cortexa9_
@@ -71,8 +71,8 @@ jobs:
             sdk_url_path: https://downloads.openwrt.org/snapshots/targets/x86/generic
             sdk_name: -sdk-x86-generic_
           - arch: mips64_octeon
-            sdk_url_path: http://downloads.openwrt.org/releases/21.02.2/targets/octeon/generic
-            sdk_name: -sdk-21.02.2-octeon_
+            sdk_url_path: http://downloads.openwrt.org/releases/21.02.3/targets/octeon/generic
+            sdk_name: -sdk-21.02.3-octeon_
           - arch: mips64_octeonplus
             sdk_url_path: https://downloads.openwrt.org/snapshots/targets/octeon/generic
             sdk_name: -sdk-octeon_
