@@ -92,12 +92,6 @@ fi
 ./scripts/feeds install -a
 
 
-echo "######################"
-echo "######################"
-go version
-echo "######################"
-echo "######################"
-
 make defconfig
 
 make package/${package_name}/clean
