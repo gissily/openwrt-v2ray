@@ -8,12 +8,6 @@ dir="$(cd "$(dirname "$0")" ; pwd)"
 package_name="v2ray-core"
 golang_commit="$OPENWRT_GOLANG_COMMIT"
 
-echo "######################"
-echo "######################"
-echo "${golang_commit}"
-echo "######################"
-echo "######################"
-
 cache_dir=${CACHE_DIR:-"~/cache"}
 
 sdk_url_path=${SDK_URL_PATH:-"https://downloads.openwrt.org/snapshots/targets/x86/64"}
@@ -96,6 +90,13 @@ if [ ! -d "package/openwrt-upx" ] ; then
 fi
 
 ./scripts/feeds install -a
+
+
+echo "######################"
+echo "######################"
+go version
+echo "######################"
+echo "######################"
 
 make defconfig
 
