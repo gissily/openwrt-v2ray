@@ -310,15 +310,15 @@ ifeq ($(CONFIG_PACKAGE_v2ray_$(BUILD_VARIANT)_compress_upx),y)
 	$(STAGING_DIR_HOST)/bin/upx --lzma --best $(GO_PKG_BUILD_BIN_DIR)/v2ray || true
 endif
 
-ifneq ($(CONFIG_PACKAGE_v2ray_$(BUILD_VARIANT)_exclude_v2ctl),y)
-	$(eval GO_PKG_BUILD_PKG:=github.com/v2fly/v2ray-core/v5/infra/control/main)
-	$(call GoPackage/Build/Compile)
-	mv -f $(GO_PKG_BUILD_BIN_DIR)/main $(GO_PKG_BUILD_BIN_DIR)/v2ctl
+#ifneq ($(CONFIG_PACKAGE_v2ray_$(BUILD_VARIANT)_exclude_v2ctl),y)
+#	$(eval GO_PKG_BUILD_PKG:=github.com/v2fly/v2ray-core/v5/infra/control/main)
+#	$(call GoPackage/Build/Compile)
+#	mv -f $(GO_PKG_BUILD_BIN_DIR)/main $(GO_PKG_BUILD_BIN_DIR)/v2ctl
 
 ifeq ($(CONFIG_PACKAGE_v2ray_$(BUILD_VARIANT)_compress_upx),y)
 	$(STAGING_DIR_HOST)/bin/upx --lzma --best $(GO_PKG_BUILD_BIN_DIR)/v2ctl || true
 endif
-endif
+#endif
 endef
 
 define Package/v2ray-core/install
@@ -327,7 +327,7 @@ define Package/v2ray-core/install
 	$(INSTALL_DIR) $(1)/usr/bin
 
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/v2ray $(1)/usr/bin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/v2ctl $(1)/usr/bin
+	#$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/v2ctl $(1)/usr/bin
 
 	$(INSTALL_DIR) $(1)/usr/share/v2ray
 
@@ -345,9 +345,9 @@ define Package/v2ray-core-mini/install
 
 	$(INSTALL_DIR) $(1)/usr/share/v2ray
 
-ifneq ($(CONFIG_PACKAGE_v2ray_mini_exclude_v2ctl),y)
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/v2ctl $(1)/usr/bin
-endif
+#ifneq ($(CONFIG_PACKAGE_v2ray_mini_exclude_v2ctl),y)
+#	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/v2ctl $(1)/usr/bin
+#endif
 
 ifneq ($(CONFIG_PACKAGE_v2ray_mini_exclude_assets),y)
 	$(INSTALL_DATA) \
