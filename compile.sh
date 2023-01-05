@@ -6,7 +6,9 @@
 dir="$(cd "$(dirname "$0")" ; pwd)"
 
 package_name="v2ray-core"
-golang_commit="$OPENWRT_GOLANG_COMMIT"
+golang_commit="${OPENWRT_GOLANG_COMMIT::-master}"
+
+echo "golang commit ${golang_commit}"
 
 cache_dir=${CACHE_DIR:-"~/cache"}
 
