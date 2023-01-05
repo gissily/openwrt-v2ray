@@ -13,6 +13,9 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          - arch: x86_64
+            sdk_url_path: https://downloads.openwrt.org/snapshots/targets/x86/64
+            sdk_name: -sdk-x86-64_
           - arch: aarch64_cortex-a53
             sdk_url_path: https://downloads.openwrt.org/snapshots/targets/bcm27xx/bcm2710
             sdk_name: -sdk-bcm27xx-bcm2710_
@@ -94,9 +97,6 @@ jobs:
           - arch: mips_mips32
             sdk_url_path: https://downloads.openwrt.org/snapshots/targets/bcm63xx/generic
             sdk_name: -sdk-bcm63xx-generic_
-          - arch: x86_64
-            sdk_url_path: https://downloads.openwrt.org/snapshots/targets/x86/64
-            sdk_name: -sdk-x86-64_
           # - arch: arc_arc700
           #   sdk_url_path: https://downloads.openwrt.org/snapshots/targets/arc770/generic
           #   sdk_name: -sdk-arc770-generic_
