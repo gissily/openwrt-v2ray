@@ -8,8 +8,6 @@ dir="$(cd "$(dirname "$0")" ; pwd)"
 package_name="v2ray-core"
 golang_commit="${OPENWRT_GOLANG_COMMIT:-master}"
 
-echo "golang commit ${golang_commit}"
-
 cache_dir=${CACHE_DIR:-"~/cache"}
 
 sdk_url_path=${SDK_URL_PATH:-"https://downloads.openwrt.org/snapshots/targets/x86/64"}
