@@ -267,7 +267,7 @@ GEOIP_VER:=latest
 GEOIP_FILE:=geoip-$(GEOIP_VER).dat
 
 define Download/geoip.dat
-  URL:=https://github.com/v2fly/geoip/releases/$(GEOIP_VER)/download
+  URL:=https://github.com/Loyalsoldier/v2ray-rules-dat/releases/$(GEOIP_VER)/latest
   URL_FILE:=geoip.dat
   FILE:=$(GEOIP_FILE)
   HASH:=skip
@@ -277,8 +277,8 @@ GEOSITE_VER:=latest
 GEOSITE_FILE:=geosite-$(GEOSITE_VER).dat
 
 define Download/geosite.dat
-  URL:=https://github.com/v2fly/domain-list-community/releases/$(GEOSITE_VER)/download
-  URL_FILE:=dlc.dat
+  URL:=https://github.com/Loyalsoldier/v2ray-rules-dat/releases/$(GEOSITE_VER)/download
+  URL_FILE:=geosite.dat
   FILE:=$(GEOSITE_FILE)
   HASH:=skip
 endef
@@ -329,11 +329,11 @@ define Package/v2ray-core/install
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/v2ray $(1)/usr/bin
 	#$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/v2ctl $(1)/usr/bin
 
-	$(INSTALL_DIR) $(1)/usr/share/v2ray
+	$(INSTALL_DIR) $(1)/usr/local/share/v2ray
 
 	$(INSTALL_DATA) \
 		$(PKG_BUILD_DIR)/release/config/{geoip,geosite}.dat \
-		$(1)/usr/share/v2ray
+		$(1)/usr/local/share/v2ray
 endef
 
 define Package/v2ray-core-mini/install
@@ -343,7 +343,7 @@ define Package/v2ray-core-mini/install
 
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/v2ray $(1)/usr/bin
 
-	$(INSTALL_DIR) $(1)/usr/share/v2ray
+	$(INSTALL_DIR) $(1)/usr/local/share/v2ray
 
 #ifneq ($(CONFIG_PACKAGE_v2ray_mini_exclude_v2ctl),y)
 #	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/v2ctl $(1)/usr/bin
@@ -352,7 +352,7 @@ define Package/v2ray-core-mini/install
 ifneq ($(CONFIG_PACKAGE_v2ray_mini_exclude_assets),y)
 	$(INSTALL_DATA) \
 		$(PKG_BUILD_DIR)/release/config/{geoip,geosite}.dat \
-		$(1)/usr/share/v2ray
+		$(1)/usr/local/share/v2ray
 endif
 endef
 
