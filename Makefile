@@ -267,7 +267,7 @@ GEOIP_VER:=latest
 GEOIP_FILE:=geoip-$(GEOIP_VER).dat
 
 define Download/geoip.dat
-  URL:=https://github.com/Loyalsoldier/v2ray-rules-dat/releases/$(GEOIP_VER)/latest
+  URL:=https://github.com/Loyalsoldier/v2ray-rules-dat/releases/$(GEOIP_VER)/download
   URL_FILE:=geoip.dat
   FILE:=$(GEOIP_FILE)
   HASH:=skip
