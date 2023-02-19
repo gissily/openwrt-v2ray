@@ -18,7 +18,7 @@ jobs:
 
       - name: Get Latest Version
         id: get_version
-        uses: actions/github-script@v3
+        uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           result-encoding: string
@@ -47,11 +47,15 @@ jobs:
               "https://codeload.github.com/v2fly/v2ray-core/tar.gz/v$latest_version" | \
               sha256sum | cut -d' ' -f1)"
 
-            echo "::set-output name=version::$latest_version"
-            echo "::set-output name=source_hash::$source_hash"
+            # echo "::set-output name=version::$latest_version"
+            # echo "::set-output name=source_hash::$source_hash"
+            echo "version=$latest_version" >> $GITHUB_OUTPUT
+            echo "source_hash=$source_hash" >> $GITHUB_OUTPUT
           else
-            echo "::set-output name=version::"
-            echo "::set-output name=source_hash::"
+            # echo "::set-output name=version::"
+            # echo "::set-output name=source_hash::"
+            echo "version=''" >> $GITHUB_OUTPUT
+            echo "source_hash=''" >> $GITHUB_OUTPUT
           fi
 
       - name: Commit New Version

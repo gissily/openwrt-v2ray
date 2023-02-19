@@ -84,11 +84,15 @@ jobs:
           pkg_release="$(grep '^PKG_RELEASE:' Makefile 2>/dev/null | cut -d'=' -f2)"
 
           if [ "${GITHUB_REF#refs/heads/}" = "releases/v${pkg_version}-${pkg_release}" ] ; then
-            echo "::set-output name=version::$pkg_version"
-            echo "::set-output name=release::$pkg_release"
+            # echo "::set-output name=version::$pkg_version"
+            # echo "::set-output name=release::$pkg_release"
+            echo "version=$pkg_version" >> $GITHUB_OUTPUT
+            echo "release=$pkg_release" >> $GITHUB_OUTPUT
           else
-            echo "::set-output name=version::0"
-            echo "::set-output name=release::0"
+            # echo "::set-output name=version::0"
+            # echo "::set-output name=release::0"
+            echo "version=0" >> $GITHUB_OUTPUT
+            echo "release=0" >> $GITHUB_OUTPUT
           fi
 
       - name: Commit New Tag
