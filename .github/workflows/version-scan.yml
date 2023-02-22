@@ -22,7 +22,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           result-encoding: string
-          debug: : true
+          debug: true
           script: |
             const { data } = await github.rest.repos.getLatestRelease({
               owner: 'v2fly',
