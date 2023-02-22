@@ -35,7 +35,7 @@ jobs:
 
       - name: Compare Version
         id: compare_version
-        if: steps.get_version.outputs.result != '' && steps.get_version.outputs.result != ''''
+        if: steps.get_version.outputs.result != '' && steps.get_version.outputs.result != "\\'\\'"
         run: |
           latest_version="${{ steps.get_version.outputs.result }}"
           current_version="$(grep '^PKG_VERSION:' Makefile 2>/dev/null | cut -d'=' -f2)"
