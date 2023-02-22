@@ -28,14 +28,14 @@ jobs:
               repo: 'v2ray-core'
             });
             if (data && data.tag_name) {
-              return data.tag_name.replace(/^v/, "")
+              return data.tag_name.replace(/^v/, "").replace("'", "")
             }
 
             return "";
 
       - name: Compare Version
         id: compare_version
-        if: steps.get_version.outputs.result != '' && steps.get_version.outputs.result != '\\'\\''
+        if: steps.get_version.outputs.result != ''
         run: |
           latest_version="${{ steps.get_version.outputs.result }}"
           current_version="$(grep '^PKG_VERSION:' Makefile 2>/dev/null | cut -d'=' -f2)"
