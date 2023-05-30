@@ -84,10 +84,10 @@ fi
 
 ln -sf "$dir" "package/$package_name"
 
-if [ ! -d "package/openwrt-upx" ] ; then
-	git clone -b master --depth 1 \
-		https://github.com/kuoruan/openwrt-upx.git package/openwrt-upx
-fi
+# if [ ! -d "package/openwrt-upx" ] ; then
+# 	git clone -b master --depth 1 \
+# 		https://github.com/kuoruan/openwrt-upx.git package/openwrt-upx
+# fi
 
 ./scripts/feeds install -a
 
