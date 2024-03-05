@@ -25,15 +25,15 @@ jobs:
           - arch: aarch64_generic
             sdk_url_path: http://downloads.openwrt.org/snapshots/targets/layerscape/armv8_64b
             sdk_name: -sdk-layerscape-armv8_64b_
-          - arch: arm_arm1176jzf-s_vfp
-            sdk_url_path: https://downloads.openwrt.org/snapshots/targets/bcm27xx/bcm2708
-            sdk_name: -sdk-bcm27xx-bcm2708_
+          # - arch: arm_arm1176jzf-s_vfp
+          #   sdk_url_path: https://downloads.openwrt.org/snapshots/targets/bcm27xx/bcm2708
+          #   sdk_name: -sdk-bcm27xx-bcm2708_
           # - arch: arm_arm926ej-s
           #   sdk_url_path: https://downloads.openwrt.org/snapshots/targets/at91/legacy
           #   sdk_name: -sdk-at91-legacy_
-          - arch: arm_cortex-a15_neon-vfpv4
-            sdk_url_path: https://downloads.openwrt.org/snapshots/targets/ipq806x/generic
-            sdk_name: -sdk-ipq806x-generic_
+          # - arch: arm_cortex-a15_neon-vfpv4
+          #   sdk_url_path: https://downloads.openwrt.org/snapshots/targets/ipq806x/generic
+          #   sdk_name: -sdk-ipq806x-generic_
           - arch: arm_cortex-a5-vfpv4
             sdk_url_path: https://downloads.openwrt.org/snapshots/targets/at91/sama5
             sdk_name: -sdk-at91-sama5_
@@ -43,9 +43,9 @@ jobs:
           - arch: arm_cortex-a8_vfpv3
             sdk_url_path: https://downloads.openwrt.org/snapshots/targets/sunxi/cortexa8
             sdk_name: -sdk-sunxi-cortexa8_
-          - arch: arm_cortex-a9
-            sdk_url_path: https://downloads.openwrt.org/snapshots/targets/bcm53xx/generic
-            sdk_name: -sdk-bcm53xx-generic_
+          # - arch: arm_cortex-a9
+          #   sdk_url_path: https://downloads.openwrt.org/snapshots/targets/bcm53xx/generic
+          #   sdk_name: -sdk-bcm53xx-generic_
           - arch: arm_cortex-a9_neon
             sdk_url_path: https://downloads.openwrt.org/snapshots/targets/imx/cortexa9
             sdk_name: -sdk-imx-
@@ -58,9 +58,9 @@ jobs:
           # - arch: arm_fa526
           #   sdk_url_path: https://downloads.openwrt.org/snapshots/targets/gemini/generic
           #   sdk_name: -sdk-gemini_
-          - arch: arm_mpcore
-            sdk_url_path: https://downloads.openwrt.org/snapshots/targets/oxnas/ox820
-            sdk_name: -sdk-oxnas-ox820_
+          # - arch: arm_mpcore
+          #   sdk_url_path: https://downloads.openwrt.org/snapshots/targets/oxnas/ox820
+          #   sdk_name: -sdk-oxnas-ox820_
           # - arch: arm_mpcore_vfp
           #   sdk_url_path: https://downloads.openwrt.org/releases/19.07.9/targets/cns3xxx/generic
           #   sdk_name: -sdk-19.07.9-cns3xxx_
@@ -79,9 +79,9 @@ jobs:
           # - arch: mips64_octeonplus
           #   sdk_url_path: https://downloads.openwrt.org/snapshots/targets/octeon/generic
           #   sdk_name: -sdk-octeon_
-          - arch: mipsel_24kc
-            sdk_url_path: https://downloads.openwrt.org/snapshots/targets/ramips/mt7620
-            sdk_name: -sdk-ramips-mt7620_
+          # - arch: mipsel_24kc
+          #   sdk_url_path: https://downloads.openwrt.org/snapshots/targets/ramips/mt7620
+          #   sdk_name: -sdk-ramips-mt7620_
           # - arch: mipsel_24kc_24kf
           #   sdk_url_path: https://downloads.openwrt.org/snapshots/targets/pistachio/generic
           #   sdk_name: -sdk-pistachio_
@@ -120,10 +120,10 @@ jobs:
       CACHE_DIR: ~/cache
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ${{ env.CACHE_DIR }}
           key: ${{ runner.os }}:openwrt-v2ray:${{ env.ARCH }}:release:cache:${{ github.run_number }}
@@ -131,7 +131,7 @@ jobs:
             ${{ runner.os }}:openwrt-v2ray:${{ env.ARCH }}:cache:
 
       - name: Setup CCache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.ccache
           key: ${{ runner.os }}:openwrt-v2ray:${{ env.ARCH }}:release:ccache:${{ github.run_number }}
