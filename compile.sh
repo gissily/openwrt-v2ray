@@ -53,12 +53,10 @@ file "$sdk_dir/$sdk_file"
 TAR_OPTIONS=""
 
 if [ "${sdk_file##*.}" = "zst" ] ; then
-	TAR_OPTIONS="--zstd -xf "
+	tar --zstd -xf "$sdk_dir/$sdk_file" -C "$sdk_home_dir" --strip=1
 else 
-	TAR_OPTIONS="-Jxf "
+	tar -Jxf "$sdk_dir/$sdk_file" -C "$sdk_home_dir" --strip=1
 fi
-
-tar "${TAR_OPTIONS}" "$sdk_dir/$sdk_file" -C "$sdk_home_dir" --strip=1
 
 cd "$sdk_home_dir"
 
