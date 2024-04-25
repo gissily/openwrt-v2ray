@@ -49,7 +49,16 @@ fi
 cd "$dir"
 
 file "$sdk_dir/$sdk_file"
-tar -Jxf "$sdk_dir/$sdk_file" -C "$sdk_home_dir" --strip=1
+
+TAR_COMMAND=""
+
+if [ "${sdk_file##*.}" = "zst" ] ; then
+	TAR_COMMAND="tar --zstd -xf "
+else 
+	TAR_COMMAND="tar -Jxf "
+fi
+
+"${TAR_COMMAND}" "$sdk_dir/$sdk_file" -C "$sdk_home_dir" --strip=1
 
 cd "$sdk_home_dir"
 
