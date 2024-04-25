@@ -50,15 +50,15 @@ cd "$dir"
 
 file "$sdk_dir/$sdk_file"
 
-TAR_COMMAND=""
+TAR_OPTIONS=""
 
 if [ "${sdk_file##*.}" = "zst" ] ; then
-	TAR_COMMAND="tar --zstd -xf "
+	TAR_OPTIONS="--zstd -xf "
 else 
-	TAR_COMMAND="tar -Jxf "
+	TAR_OPTIONS="-Jxf "
 fi
 
-"${TAR_COMMAND}" "$sdk_dir/$sdk_file" -C "$sdk_home_dir" --strip=1
+tar "${TAR_OPTIONS}" "$sdk_dir/$sdk_file" -C "$sdk_home_dir" --strip=1
 
 cd "$sdk_home_dir"
 
