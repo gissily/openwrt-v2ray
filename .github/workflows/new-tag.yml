@@ -1,6 +1,7 @@
 name: New Tag
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - "releases/v*"
