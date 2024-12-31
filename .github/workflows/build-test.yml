@@ -19,7 +19,7 @@ jobs:
     env:
       SDK_URL_PATH: ${{ matrix.sdk_url_path }}
       SDK_NAME: -sdk-
-      ARCH: x86-64
+      ARCH: x86_64
       CACHE_DIR: ~/cache
     steps:
       - name: Checkout
