@@ -12,8 +12,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        sdk_url_path: [https://downloads.openwrt.org/releases/23.05.5/targets/x86/64/,https://downloads.openwrt.org/snapshots/targets/x86/64]
     env:
-      SDK_URL_PATH: https://downloads.openwrt.org/snapshots/targets/x86/64
+      SDK_URL_PATH: ${{ matrix.sdk_url_path }}
       SDK_NAME: -sdk-x86-64_
       ARCH: x86_64
       CACHE_DIR: ~/cache
