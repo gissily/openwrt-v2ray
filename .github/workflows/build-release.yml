@@ -7,7 +7,7 @@ on:
 
 jobs:
   release:
-    name: Build for ${{ matrix.arch }}
+    # name: Build for ${{ matrix.arch }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -62,7 +62,6 @@ jobs:
             sdk_path: /ixp4xx/generic
           - arch: powerpc_464fp
             sdk_path: /apm821xx/nand
-
     env:
       SDK_NAME: -sdk-
       ARCH: ${{ matrix.arch }}
