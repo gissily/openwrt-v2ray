@@ -112,3 +112,13 @@ find "$sdk_home_dir/bin/" -type f -name "${package_name}*.ipk" -exec cp -f {} "$
 find "$sdk_home_dir/bin/" -type f -name "${package_name}*.apk" -exec cp -f {} "$dir" \;
 
 ls -la ./
+
+apks=`ls ./*.apk`
+for apkname in $apks
+do
+   name=$(echo $apkname | sed 's/\..*$//')
+   newname="${name}_${ARCH}.apk"
+   mv ${apkname} ${newname}
+done
+
+ls -la ./
