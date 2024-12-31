@@ -109,3 +109,4 @@ cd "$dir"
 find "$sdk_home_dir/bin/" -type f -exec ls -lh {} \;
 
 find "$sdk_home_dir/bin/" -type f -name "${package_name}*.ipk" -exec cp -f {} "$dir" \;
+find "$sdk_home_dir/bin/" -type f -name "${package_name}*.apk" -exec cp -f {} "$dir" \;
