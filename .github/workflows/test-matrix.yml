@@ -1,9 +1,7 @@
 name: Build and Release
 
 on:
-  push:
-    tags:
-      - "*"
+  workflow_dispatch:
 
 jobs:
   release:
@@ -69,74 +67,7 @@ jobs:
     steps:
       - name: set env
         run: echo "SDK_URL_PATH=${{ matrix.sdk_url_path }}${{ matrix.sdk_path }}" >> $GITHUB_ENV
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Cache
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.CACHE_DIR }}
-          key: ${{ runner.os }}:openwrt-v2ray:${{ env.ARCH }}:release:cache:${{ github.run_number }}
-          restore-keys: |
-            ${{ runner.os }}:openwrt-v2ray:${{ env.ARCH }}:cache:
-
-      - name: Setup CCache
-        uses: actions/cache@v4
-        with:
-          path: ~/.ccache
-          key: ${{ runner.os }}:openwrt-v2ray:${{ env.ARCH }}:release:ccache:${{ github.run_number }}
-          restore-keys: |
-            ${{ runner.os }}:openwrt-v2ray:${{ env.ARCH }}:ccache:
-
-      - name: Install Dependencies
-        run: |
-          sudo apt-get update && \
-            sudo apt-get install -yq gettext libncurses5-dev rsync xsltproc
-
       - name: Prepare For Build
         run: |
-          sdk_home="$(mktemp -d)"
-
-          test -d ~/.ccache || mkdir -p ~/.ccache
-          ln -sf ~/.ccache "$sdk_home/.ccache"
-
-          echo "SDK_HOME=$sdk_home" >> $GITHUB_ENV
-          echo "CONFIG_CCACHE=y" >> $GITHUB_ENV
-
-      - name: Build package
-        env:
-          OPENWRT_GOLANG_COMMIT: ${{ secrets.OPENWRT_GOLANG_COMMIT }}
-        run: sh compile.sh
-
-      - name: Show CCache Status
-        run: |
-          eval "${{ env.SDK_HOME }}/staging_dir/host/bin/ccache -s"
-
-      - name: Release and Upload Assets
-        uses: softprops/action-gh-release@v2
-        with:
-          files: |
-            *.ipk
-            *.apk
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  notify:
-    name: Notify Release Publish
-    runs-on: ubuntu-latest
-    env:
-      TRIGGER_URL: ${{ secrets.TRIGGER_URL }}
-      TRIGGER_TOKEN: ${{ secrets.TRIGGER_TOKEN }}
-    needs: release
-    steps:
-      - name: Notify Jenkins
-        run: |
-          if [ -z "$TRIGGER_URL" ] ; then
-            echo "::warning::No trigger url found, skip..."
-            exit 0
-          fi
-          curl -X POST \
-              -H "Content-Type: application/json; charset=utf-8" \
-              -H "Authorization: Bearer $TRIGGER_TOKEN" \
-              -d "{\"event\":\"release\",\"repository\":\"${{ github.repository }}\",\"ref\":\"${{ github.ref }}\"}" \
-              "$TRIGGER_URL" || true
+          echo ${{ env.ARCH }}
+          echo ${{ env.SDK_URL_PATH }}
