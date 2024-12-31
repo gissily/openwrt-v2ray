@@ -116,7 +116,7 @@ ls -la ./
 apks=`ls ./*.apk`
 for apkname in $apks
 do
-   name=$(echo $apkname | sed 's/\..*$//')
+   name=$(echo $apkname | sed -E 's/(([^.]*\.){2}[^.]*)\..*/\1/')
    newname="${name}_${ARCH}.apk"
    mv ${apkname} ${newname}
 done
