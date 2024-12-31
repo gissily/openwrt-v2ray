@@ -7,68 +7,117 @@ on:
 
 jobs:
   release:
-    name: Build for ${{ matrix.arch }}
+    name: Build for ${{ matrix.archEntry.arch }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         sdk_url_path: ["https://downloads.openwrt.org/releases/23.05.5/targets","https://downloads.openwrt.org/snapshots/targets"]
-        include:
-          - arch: x86_64
+        archEntry: [
+          { 
+            arch: x86_64,
             sdk_path: /x86/64
-          - arch: aarch64_cortex-a53
+          },
+          { 
+            arch: aarch64_cortex-a53,
             sdk_path: /bcm27xx/bcm2710
-          - arch: aarch64_cortex-a72
+          },
+          { 
+            arch: aarch64_cortex-a72,
             sdk_path: /mvebu/cortexa72
-          - arch: aarch64_generic
+          },
+          { 
+            arch: aarch64_generic,
             sdk_path: /layerscape/armv8_64b
-          - arch: arm_arm1176jzf-s_vfp
+          },
+          { 
+            arch: arm_arm1176jzf-s_vfp,
             sdk_path: /bcm27xx/bcm2708
-          - arch: arm_cortex-a15_neon-vfpv4
+          },
+          { 
+            arch: arm_cortex-a15_neon-vfpv4,
             sdk_path: /ipq806x/generic
-          - arch: arm_cortex-a5-vfpv4
+          },
+          { 
+            arch: arm_cortex-a5-vfpv4,
             sdk_path: /at91/sama5
-          - arch: arm_cortex-a7_neon-vfpv4
+          },
+          { 
+            arch: arm_cortex-a7_neon-vfpv4,
             sdk_path: /bcm27xx/bcm2709
-          - arch: arm_cortex-a8_vfpv3
+          },
+          { 
+            arch: arm_cortex-a8_vfpv3,
             sdk_path: /sunxi/cortexa8
-          - arch: arm_cortex-a9
+          },
+          { 
+            arch: arm_cortex-a9,
             sdk_path: /bcm53xx/generic
-          - arch: arm_cortex-a9_neon
+          },
+          { 
+            arch: arm_cortex-a9_neon,
             sdk_path: /imx/cortexa9
-          - arch: arm_cortex-a9_vfpv3-d16
+          },
+          { 
+            arch: arm_cortex-a9_vfpv3-d16,
             sdk_path: /mvebu/cortexa9
-          - arch: arm_fa526
+          },
+          { 
+            arch: arm_fa526,
             sdk_path: /gemini/generic
-          - arch: arm_xscale
+          },
+          { 
+            arch: arm_xscale,
             sdk_path: /kirkwood/generic
-          - arch: i386_pentium
+          },
+          { 
+            arch: i386_pentium,
             sdk_path: /x86/legacy
-          - arch: i386_pentium4
+          },
+          { 
+            arch: i386_pentium4,
             sdk_path: /x86/generic
-          - arch: mips64_octeonplus
+          },
+          { 
+            arch: mips64_octeonplus,
             sdk_path: /octeon/generic
-          - arch: mipsel_24kc
+          },
+          { 
+            arch: mipsel_24kc,
             sdk_path: /ramips/mt7620
-          - arch: mipsel_24kc_24kf
+          },
+          { 
+            arch: mipsel_24kc_24kf,
             sdk_path: /pistachio/generic
-          - arch: mipsel_74kc
+          },
+          { 
+            arch: mipsel_74kc,
             sdk_path: /bcm47xx/mips74k
-          - arch: mipsel_mips32
+          },
+          { 
+            arch: mipsel_mips32,
             sdk_path: /bcm47xx/generic
-          - arch: mips_24kc
+          },
+          { 
+            arch: mips_24kc,
             sdk_path: /ath79/generic
-          - arch: armeb_xscale
+          },
+          { 
+            arch: armeb_xscale,
             sdk_path: /ixp4xx/generic
-          - arch: powerpc_464fp
+          },
+          { 
+            arch: powerpc_464fp,
             sdk_path: /apm821xx/nand
+          }
+        ]
     env:
       SDK_NAME: -sdk-
-      ARCH: ${{ matrix.arch }}
+      ARCH: ${{ matrix.archEntry.arch }}
       CACHE_DIR: ~/cache
     steps:
       - name: set env
-        run: echo "SDK_URL_PATH=${{ matrix.sdk_url_path }}${{ matrix.sdk_path }}" >> $GITHUB_ENV
+        run: echo "SDK_URL_PATH=${{ matrix.sdk_url_path }}${{ matrix.archEntry.sdk_path }}" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@v4
 
