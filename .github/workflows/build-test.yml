@@ -17,10 +17,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        sdk_url_path: [
-          "https://downloads.openwrt.org/snapshots/targets",
-          "https://downloads.openwrt.org/releases/24.10.0-rc4/targets"
-        ]
+        sdk_url_path: ["https://downloads.openwrt.org/snapshots/targets/x86/64","https://downloads.openwrt.org/releases/24.10.0-rc4/targets/x86/64/"]
     env:
       SDK_URL_PATH: ${{ matrix.sdk_url_path }}
       SDK_NAME: -sdk-
