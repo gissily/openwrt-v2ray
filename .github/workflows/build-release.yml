@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        sdk_url_path: ["https://downloads.openwrt.org/releases/23.05.5/targets","https://downloads.openwrt.org/snapshots/targets"]
+        sdk_url_path: ["https://downloads.openwrt.org/releases/24.10.0-rc4/targets","https://downloads.openwrt.org/snapshots/targets"]
         archEntry: [
           { 
             arch: x86_64,
