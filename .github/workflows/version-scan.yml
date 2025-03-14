@@ -34,7 +34,7 @@ jobs:
               console.log(data)
               console.log(data[0])
               console.log(data[0].tag_name)
-              return data.tag_name.replace(/^v/, "")
+              return data.tag_name.toString().replace(/^v/, "")
             }
 
             return "";
