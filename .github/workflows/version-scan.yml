@@ -31,13 +31,8 @@ jobs:
               page: '1'
             });
             if (data && data[0] && data[0].tag_name) {
-              console.log(data[0].tag_name)
-              console.log(data[0].tag_name instanceof Object)
-              console.log(data[0].tag_name instanceof String)
-              console.log(data[0].tag_name.constructor.name)
-              return data.tag_name.toString().replace(/^v/, "")
+              return data[0].tag_name.toString().replace(/^v/, "")
             }
-
             return "";
 
       - name: Compare Version
