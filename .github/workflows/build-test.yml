@@ -19,7 +19,7 @@ jobs:
       matrix:
         sdk_url_path: [
           "https://downloads.openwrt.org/snapshots/targets/x86/64",
-          "https://downloads.openwrt.org/releases/24.10.1/targets/x86/64/"
+          "https://downloads.openwrt.org/releases/24.10.2/targets/x86/64/"
         ]
     env:
       SDK_URL_PATH: ${{ matrix.sdk_url_path }}
