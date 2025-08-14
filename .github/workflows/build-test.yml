@@ -28,7 +28,7 @@ jobs:
       CACHE_DIR: ~/cache
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Cache
         uses: actions/cache@v4

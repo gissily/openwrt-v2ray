@@ -122,7 +122,7 @@ jobs:
       - name: set env
         run: echo "SDK_URL_PATH=${{ matrix.sdk_url_path }}${{ matrix.archEntry.sdk_path }}" >> $GITHUB_ENV
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Cache
         uses: actions/cache@v4
