@@ -14,7 +14,7 @@ jobs:
       matrix:
         sdk_url_path: [
           "https://downloads.openwrt.org/snapshots/targets",
-          "https://downloads.openwrt.org/releases/24.10.2/targets"
+          "https://downloads.openwrt.org/releases/24.10.3/targets"
         ]
         archEntry: [
           { 
