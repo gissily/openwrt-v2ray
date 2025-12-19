@@ -71,7 +71,7 @@ jobs:
           eval "${{ env.SDK_HOME }}/staging_dir/host/bin/ccache -s"
 
       - name: Save Build Result
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: v2ray-core
           path: |
