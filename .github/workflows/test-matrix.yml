@@ -8,6 +8,7 @@ jobs:
     name: Build for ${{ matrix.archEntry.arch }}
     runs-on: ubuntu-latest
     strategy:
+      max-parallel: 5
       fail-fast: false
       matrix:
         sdk_url_path: ["https://downloads.openwrt.org/releases/24.10.3/targets","https://downloads.openwrt.org/snapshots/targets"]
