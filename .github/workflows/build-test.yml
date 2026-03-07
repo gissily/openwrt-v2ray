@@ -1,4 +1,4 @@
-name: Build Test
+name: Build
 
 on:
   workflow_dispatch:
@@ -13,16 +13,23 @@ on:
 
 jobs:
   build:
+    name: Build for ${{ matrix.archEntry.arch }} - ${{ matrix.sdk_url_path.suffix }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         sdk_url_path: [
-          "https://downloads.openwrt.org/snapshots/targets/x86/64",
-          "https://downloads.openwrt.org/releases/24.10.5/targets/x86/64/"
+          {
+            url: "https://downloads.openwrt.org/releases/24.10.5/targets/x86/64",
+            suffix: "ipk"
+          },
+          {
+            url: "https://downloads.openwrt.org/snapshots/targets/x86/64",
+            suffix: "apk"
+          }
         ]
     env:
-      SDK_URL_PATH: ${{ matrix.sdk_url_path }}
+      SDK_URL_PATH: ${{ matrix.sdk_url_path.url }}
       SDK_NAME: -sdk-
       ARCH: x86_64
       CACHE_DIR: ~/cache

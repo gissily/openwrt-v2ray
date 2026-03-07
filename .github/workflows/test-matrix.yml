@@ -5,7 +5,7 @@ on:
 
 jobs:
   release:
-    name: Build for ${{ matrix.archEntry.arch }} ${{ matrix.sdk_url_path.suffix }}
+    name: Build for ${{ matrix.archEntry.arch }} - ${{ matrix.sdk_url_path.suffix }}
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 5
@@ -13,7 +13,7 @@ jobs:
       matrix:
         sdk_url_path: [
           {
-            url: "https://downloads.openwrt.org/releases/24.10.3/targets",
+            url: "https://downloads.openwrt.org/releases/24.10.5/targets",
             suffix: "ipk"
           },
           {

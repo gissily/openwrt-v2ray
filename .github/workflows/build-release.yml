@@ -7,15 +7,21 @@ on:
 
 jobs:
   release:
-    name: Build for ${{ matrix.archEntry.arch }}
+    name: Build for ${{ matrix.archEntry.arch }} - ${{ matrix.sdk_url_path.suffix }}
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 5
       fail-fast: false
       matrix:
         sdk_url_path: [
-          "https://downloads.openwrt.org/snapshots/targets",
-          "https://downloads.openwrt.org/releases/24.10.5/targets"
+          {
+            url: "https://downloads.openwrt.org/releases/24.10.5/targets",
+            suffix: "ipk"
+          },
+          {
+            url: "https://downloads.openwrt.org/snapshots/targets",
+            suffix: "apk"
+          }
         ]
         archEntry: [
           { 
@@ -121,7 +127,7 @@ jobs:
       CACHE_DIR: ~/cache
     steps:
       - name: set env
-        run: echo "SDK_URL_PATH=${{ matrix.sdk_url_path }}${{ matrix.archEntry.sdk_path }}" >> $GITHUB_ENV
+        run: echo "SDK_URL_PATH=${{ matrix.sdk_url_path.url }}${{ matrix.archEntry.sdk_path }}" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@v6
 
