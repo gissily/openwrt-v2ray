@@ -13,7 +13,7 @@ on:
 
 jobs:
   build:
-    name: Build for ${{ matrix.archEntry.arch }} - ${{ matrix.sdk_url_path.suffix }}
+    name: Build for ${{ matrix.sdk_url_path.suffix }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
