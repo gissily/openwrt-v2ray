@@ -1,4 +1,4 @@
-name: Build
+name: SDK Test
 
 on:
   workflow_dispatch:
