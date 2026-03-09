@@ -99,7 +99,9 @@ ln -sf "$dir" "package/$package_name"
 ./scripts/feeds install -a
 
 
-make defconfig
+# make defconfig
+make menuconfig
+
 
 make package/${package_name}/clean
 make package/${package_name}/compile V=s

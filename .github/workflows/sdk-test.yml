@@ -2,42 +2,38 @@ name: Build
 
 on:
   workflow_dispatch:
-  push:
-    branches-ignore:
-      - "releases/v*"
-    tags-ignore:
-      - "*"
-    paths-ignore:
-      - .github/workflows/test-matrix.yml
-      - .github/workflows/sdk-test.yml
-  pull_request:
+    inputs:
+      sdk_url_path:
+        description: 'SDK url'
+        required: true
+        default: 'https://downloads.openwrt.org/releases/24.10.5/targets'
+        type: string
+      arch:
+        description: 'arch'
+        required: true
+        default: 'x86_64'
+        type: string
+      sdk_path:
+        description: 'SDK target path'
+        required: true
+        default: '/x86/64'
+        type: string
 
 jobs:
   build:
-    name: Build for ${{ matrix.sdk_url_path.suffix }}
+    name: Build SDK 
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      matrix:
-        sdk_url_path: [
-          {
-            url: "https://downloads.openwrt.org/releases/24.10.5/targets/x86/64",
-            suffix: "ipk"
-          },
-          {
-            url: "https://downloads.openwrt.org/snapshots/targets/x86/64",
-            suffix: "apk"
-          }
-        ]
     env:
-      SDK_URL_PATH: ${{ matrix.sdk_url_path.url }}
       SDK_NAME: -sdk-
-      ARCH: x86_64
+      ARCH: ${{ github.event.inputs.arch }}
       CACHE_DIR: ~/cache
     steps:
+      - name: set env
+        run: echo "SDK_URL_PATH=${{ github.event.inputs.sdk_url_path }}${{ github.event.inputs.sdk_path }}" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@v6
-
       - name: Setup Cache
         uses: actions/cache@v5
         with:
