@@ -99,8 +99,8 @@ ln -sf "$dir" "package/$package_name"
 ./scripts/feeds install -a
 
 
-# make defconfig
-make menuconfig
+make defconfig
+# make menuconfig
 
 
 make package/${package_name}/clean
