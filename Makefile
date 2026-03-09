@@ -363,5 +363,5 @@ endif
 
 $(eval $(call GoBinPackage,v2ray-core))
 $(eval $(call BuildPackage,v2ray-core))
-$(eval $(call GoBinPackage,v2ray-core-mini))
-$(eval $(call BuildPackage,v2ray-core-mini))
+# $(eval $(call GoBinPackage,v2ray-core-mini))
+# $(eval $(call BuildPackage,v2ray-core-mini))
