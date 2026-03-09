@@ -10,7 +10,7 @@ jobs:
     name: Build for ${{ matrix.archEntry.arch }} - ${{ matrix.sdk_url_path.suffix }}
     runs-on: ubuntu-latest
     strategy:
-      max-parallel: 5
+      max-parallel: 3
       fail-fast: false
       matrix:
         sdk_url_path: [
