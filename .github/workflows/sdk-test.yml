@@ -34,9 +34,10 @@ jobs:
         run: echo "SDK_URL_PATH=${{ github.event.inputs.sdk_url_path }}${{ github.event.inputs.sdk_path }}" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@v6
-      - uses: actions/setup-go@v6
+      - name: Setup Go
+        uses: actions/setup-go@v6
         with:
-          go-version: '1.25'
+          go-version-file: go.mod
       - name: Setup Cache
         uses: actions/cache@v5
         with:
