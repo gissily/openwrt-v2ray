@@ -68,6 +68,13 @@ jobs:
 
           release_branch="releases/v${version}-1"
 
+          go_version=$(curl -s "https://raw.githubusercontent.com/v2fly/v2ray-core/refs/tags/v${version}/go.mod" | grep -m 1 go | cut -d' ' -f2)
+
+          if [ -z "$go_version" ] ; then
+            echo "Get the go version failed"
+            exit 1
+          fi
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
@@ -84,6 +91,9 @@ jobs:
             -e "s/^PKG_HASH.*/PKG_HASH:=${source_hash}/" \
             Makefile
 
+          sed -i -e "s/^go .*/go ${go_version}/" go.mod
+
+          git add -f go.mod
           git add -f Makefile
 
           git commit -m "chore: bump to v${version}-1"

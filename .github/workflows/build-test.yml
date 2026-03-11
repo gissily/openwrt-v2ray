@@ -72,6 +72,8 @@ jobs:
           echo "SDK_HOME=$sdk_home" >> $GITHUB_ENV
           echo "CONFIG_CCACHE=y" >> $GITHUB_ENV
 
+          go version
+
       - name: Build package
         env:
           OPENWRT_GOLANG_COMMIT: ${{ secrets.OPENWRT_GOLANG_COMMIT }}
