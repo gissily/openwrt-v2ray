@@ -6,7 +6,7 @@ on:
       sdk_url_path:
         description: 'SDK url'
         required: true
-        default: 'https://downloads.openwrt.org/releases/24.10.5/targets'
+        default: 'https://downloads.openwrt.org/releases/24.10.6/targets'
         type: string
       arch:
         description: 'arch'

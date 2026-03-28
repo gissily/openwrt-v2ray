@@ -15,7 +15,7 @@ jobs:
       matrix:
         sdk_url_path: [
           {
-            url: "https://downloads.openwrt.org/releases/24.10.5/targets",
+            url: "https://downloads.openwrt.org/releases/24.10.6/targets",
             suffix: "ipk"
           },
           {
