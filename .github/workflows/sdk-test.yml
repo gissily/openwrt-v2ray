@@ -33,7 +33,7 @@ jobs:
       - name: set env
         run: echo "SDK_URL_PATH=${{ github.event.inputs.sdk_url_path }}${{ github.event.inputs.sdk_path }}" >> $GITHUB_ENV
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Setup Go
         uses: actions/setup-go@v6
         with:
